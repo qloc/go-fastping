@@ -373,8 +373,8 @@ func (p *Pinger) Done() <-chan bool {
 func (p *Pinger) Stop() {
 	p.debugln("Stop(): close(p.ctx.stop)")
 	close(p.ctx.stop)
-	p.debugln("Stop(): <-p.ctx.done")
-	<-p.ctx.done
+	p.debugln("Stop(): p.ctx.done <- true")
+	p.ctx.done <- true
 }
 
 // Err returns an error that is set by RunLoop(). It must be called after
